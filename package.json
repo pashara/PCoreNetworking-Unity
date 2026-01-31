@@ -8,5 +8,7 @@
   "keywords": [ "networking", "internet", "status", "PCore" ],
   "license": "MIT",
   "category": "Utils",
-  "dependencies": {}
+  "dependencies": {
+    "com.cysharp.unitask": "2.5.10"
+  }
 }
