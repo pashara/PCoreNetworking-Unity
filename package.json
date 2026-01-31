@@ -10,5 +10,12 @@
   "category": "Utils",
   "dependencies": {
     "com.cysharp.unitask": "2.5.10"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Visualize example",
+      "description": "Contains visualize network and time stats via public static API",
+      "path": "Samples~/SimpleIntegration"
+    }
+  ]
 }

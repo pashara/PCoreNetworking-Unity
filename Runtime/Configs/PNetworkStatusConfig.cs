@@ -26,9 +26,9 @@ namespace PCore.Networking.Configs
 
 
         // ReSharper disable once InconsistentNaming
-        public bool ResetTimeOnPause = false;
+        public bool ResetTimeOnPause = true;
         // ReSharper disable once InconsistentNaming
-        public bool ResetTimeOnFocus = false;
+        public bool ResetTimeOnFocus = true;
 
         [Tooltip("Допуск совпадения времени устройства с сервером.")]
         // ReSharper disable once InconsistentNaming
