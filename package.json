@@ -1,0 +1,14 @@
+{
+  "name": "com.pcore.networking",
+  "displayName": "PCore Networking Utils",
+  "author": { "name": "Pavel Sapuryn", "url": "https://github.com/pashara" },
+  "version": "0.0.1",
+  "unity": "2020.2",
+  "description": "Network status checker and server time checker.",
+  "keywords": [ "networking", "internet", "status", "PCore" ],
+  "license": "MIT",
+  "category": "Utils",
+  "dependencies": {
+    "com.cysharp.unitask": "2.5.10"
+  }
+}
