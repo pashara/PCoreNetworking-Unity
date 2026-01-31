@@ -26,7 +26,7 @@ namespace PCore.Networking
 
 #region Time Protection
         
-        public static bool IsProtected => Ensure().TimeProtection.IsProtected;
+        public static bool TimeProtected => Ensure().TimeProtection.IsProtected;
 
         public static DateTime UtcNow => Ensure().TimeProtection.HasSync
             ? Ensure().TimeProtection.UtcNow
@@ -36,16 +36,11 @@ namespace PCore.Networking
             ? Ensure().TimeProtection.Now
             : DateTime.Now;
 
-        public static event Action<bool> OnProtectedChanged;
+        public static event Action<bool> OnTimeProtectedChanged;
 
-#if PCORE_NETWORK_UNIRX
-        public static IReactiveProperty<bool> IsProtectedRx => _isProtectedRx ??= new ReactiveProperty<bool>(false);
-        private static ReactiveProperty<bool> _isProtectedRx;
-#endif
-
-#if PCORE_NETWORK_R3
-        public static IReactiveProperty<bool> IsProtectedRx => _isProtectedRx ??= new ReactiveProperty<bool>(false);
-        private static ReactiveProperty<bool> _isProtectedRx;
+#if PCORE_NETWORK_UNIRX || PCORE_NETWORK_R3
+        public static IReactiveProperty<bool> TimeProtectedRx => _isTimeProtectedRx ??= new ReactiveProperty<bool>(false);
+        private static ReactiveProperty<bool> _isTimeProtectedRx;
 #endif
         
         public static void ResetTimeProtection()
@@ -65,14 +60,7 @@ namespace PCore.Networking
 
         public static event Action<bool> OnStatusChanged;
 
-#if PCORE_NETWORK_UNIRX
-        public static IReactiveProperty<bool> InternetAvailableRx => _internetAvailableRx ??= new ReactiveProperty<bool>(false);
-        public static IReactiveProperty<bool> HasEverCheckedRx => _hasEverCheckedRx ??= new ReactiveProperty<bool>(false);
-        private static ReactiveProperty<bool> _internetAvailableRx;
-        private static ReactiveProperty<bool> _hasEverCheckedRx;
-#endif
-
-#if PCORE_NETWORK_R3
+#if PCORE_NETWORK_UNIRX || PCORE_NETWORK_R3
         public static IReactiveProperty<bool> InternetAvailableRx => _internetAvailableRx ??= new ReactiveProperty<bool>(false);
         public static IReactiveProperty<bool> HasEverCheckedRx => _hasEverCheckedRx ??= new ReactiveProperty<bool>(false);
         private static ReactiveProperty<bool> _internetAvailableRx;
@@ -104,7 +92,7 @@ namespace PCore.Networking
             _service.TimeProtection.ProtectedChanged += p =>
             {
                 SyncReactiveState();
-                OnProtectedChanged?.Invoke(p);
+                OnTimeProtectedChanged?.Invoke(p);
             };
             
             _service.Start();
@@ -126,21 +114,14 @@ namespace PCore.Networking
 
         private static void SyncReactiveState()
         {
-#if PCORE_NETWORK_UNIRX
-            if (_internetAvailableRx != null) _internetAvailableRx.Value = _service != null && _service.InternetAvailable;
-            if (_hasEverCheckedRx != null) _hasEverCheckedRx.Value = _service != null && _service.HasEverChecked;
-#endif
-#if PCORE_NETWORK_R3
+#if PCORE_NETWORK_UNIRX || PCORE_NETWORK_R3
             if (_internetAvailableRx != null) _internetAvailableRx.Value = _service != null && _service.InternetAvailable;
             if (_hasEverCheckedRx != null) _hasEverCheckedRx.Value = _service != null && _service.HasEverChecked;
 #endif
         
             
-#if PCORE_NETWORK_UNIRX
-            if (_isProtectedRx != null) _isProtectedRx.Value = _service != null && _service.TimeProtection.IsProtected;
-#endif
-#if PCORE_NETWORK_R3
-            if (_isProtectedRx != null) _isProtectedRx.Value = _service != null && _service.TimeProtection.IsProtected;
+#if PCORE_NETWORK_UNIRX || PCORE_NETWORK_R3
+            if (_isTimeProtectedRx != null) _isTimeProtectedRx.Value = _service != null && _service.TimeProtection.IsProtected;
 #endif
             
         }

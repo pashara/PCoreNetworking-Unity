@@ -3,27 +3,23 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 namespace PCore.Networking.Configs
 {
-    [CreateAssetMenu(menuName = "PNetwork/Config", fileName = "PNetworkStatusConfig")]
+    [CreateAssetMenu(menuName = "PCore/Networking/Config", fileName = "PNetworkStatusConfig")]
     public sealed class PNetworkStatusConfig : ScriptableObject
     {
         [Header("Ping endpoint")]
-        [Tooltip("URL для проверки. По умолчанию: https://clients3.google.com/generate_204")]
         // ReSharper disable once InconsistentNaming
         [SerializeField] private string _pingUrl = "https://clients3.google.com/generate_204";
 
         [Header("Success criteria")]
-        [Tooltip("Ожидаемый 'ответ'. Если это число (например 204) — сравниваем с HTTP статус-кодом. Иначе сравниваем с телом ответа (строго).")]
         // ReSharper disable once InconsistentNaming
         [SerializeField] private string _successResponse = "204";
 
         [Header("Polling")]
-        [Tooltip("Секунд между повторными проверками.")]
         [Min(0.1f)]
         // ReSharper disable once InconsistentNaming
         [SerializeField] private float _secondsBetweenChecks = 5f;
 
         [Header("Timeouts")]
-        [Tooltip("Таймаут запроса (сек).")]
         [Min(0.1f)]
         // ReSharper disable once InconsistentNaming
         [SerializeField] private int _timeoutSeconds = 4;

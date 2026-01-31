@@ -2,7 +2,9 @@
     "name": "PCore.Networking.Runtime",
     "rootNamespace": "PCore.Networking",
     "references": [
-        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+        "UniTask",
+        "UniRx",
+        "R3.Unity"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
