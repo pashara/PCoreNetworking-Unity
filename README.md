@@ -11,7 +11,7 @@ Designed for mobile & desktop games that need:
 - UniTask-based async (no coroutines, no thread issues)
 
 
-<img src="~Docs/usage_example.gif" height="500" alt="Usage Example" />
+<img src="Docs~/usage_example.gif" height="500" alt="Usage Example" />
 
 ---
 
